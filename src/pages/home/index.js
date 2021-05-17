@@ -72,7 +72,7 @@ const Home = (props) => {
 
   let firstRow;
 
-  const rowsPerPage = 10;
+  const rowsPerPage = 9;
   const classes = useStyles();
   const cleanItemSelected = () => {
     setItemSelected(null);
@@ -186,7 +186,10 @@ const Home = (props) => {
       </BodyMisc>
       <BodyTable>
         {tableContent && tableContent.length && (
-          <TableContainer component={Paper} style={{ minHeight: '65vh' }}>
+          <TableContainer
+            component={Paper}
+            style={{ minHeight: '67vh', maxHeight: '67vh' }}
+          >
             <Table className={classes.table} aria-label="customized table">
               <TableHead>
                 <TableRow>
