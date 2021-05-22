@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Average+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Average Sans', sans-serif;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f1f5f9;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.MuiAutocomplete-popper {
+  z-index: 99999999999999 !important;
+}
+
+.MuiAutocomplete-root,
+.MuiOutlinedInput-root,
+.MuiAutocomplete-inputRoot,
+.MuiInputBase-fullWidth,
+.MuiInputBase-formControl,
+.MuiInputBase-adornedEnd,
+.MuiOutlinedInput-adornedEnd {
+  min-height: 48px !important;
+}
+.MuiTableCell-head {
+  color: white !important;
+}
