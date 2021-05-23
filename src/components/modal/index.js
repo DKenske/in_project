@@ -7,6 +7,7 @@ const ModalComponent = ({
   modalState,
   onBackdropClick,
   maxWidth,
+  minWidth,
   children,
   onClose,
   fullWidth,
@@ -31,6 +32,7 @@ const ModalComponent = ({
       onClose={onClose}
       fullWidth={fullWidth}
       maxWidth={maxWidth}
+      minWidth={minWidth}
       fullScreen={fullScreenMobile}
       TransitionComponent={TransitionComponent}
       transitionDuration={transitionDuration}

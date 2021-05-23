@@ -14,6 +14,7 @@ import {
 } from './styles';
 import { ModalUser } from './modalUser';
 import img from '../../assets/images/Novo Projeto.png';
+import history from '../../services/history';
 
 const NavigationComponent = ({ children }) => {
   const [openMobile, setOpenMobile] = useState(false);
@@ -24,11 +25,15 @@ const NavigationComponent = ({ children }) => {
   const handleCloseUserModal = () => {
     setUserModalOpen(false);
   };
+  const redirect = (e, route) => {
+    e.stopPropagation();
+    history.push(route);
+  };
 
   return (
     <>
       <Header mobileMenuIsOpen={openMobile} userSettingsIsOpen={openSettings}>
-        <imageSrc>
+        <imageSrc onClick={(e) => redirect(e, '/')}>
           <img
             src={voltar}
             style={{

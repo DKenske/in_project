@@ -3,11 +3,11 @@
   // eslint-disable-next-line global-require
   const database = require('./database');
   // eslint-disable-next-line global-require
-  const Aluno = require('./models/aluno.js');
+  const content = require('./models/content');
   // eslint-disable-next-line global-require
-  const Curso = require('./models/curso.js');
+  const book = require('./models/book');
   // eslint-disable-next-line global-require
-  const Turma = require('./models/turma.js');
+  const module = require('./models/module');
 
   try {
     const resultado = await database.sync();

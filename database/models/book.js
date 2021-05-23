@@ -1,26 +1,21 @@
 const Sequelize = require('sequelize');
 const database = require('../database');
 
-const Turma = database.define('turma', {
+const Book = database.define('book', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  nome: {
+  book_title: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-
-  curso: {
+  module_name: {
     type: Sequelize.STRING,
-    allowNull: false,
-  },
-  ativo: {
-    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
 });
 
-module.exports = Turma;
+module.exports = Book;

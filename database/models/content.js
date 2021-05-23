@@ -1,33 +1,29 @@
 const Sequelize = require('sequelize');
 const database = require('../database');
 
-const Aluno = database.define('aluno', {
+const Content = database.define('content', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  nome: {
+  video_url: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  sexo: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  turma: {
+  game_url: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  idade: {
-    type: Sequelize.NUMBER,
+  book_title: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
-  ativo: {
-    type: Sequelize.BOOLEAN,
+  module_name: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
 });
 
-module.exports = Aluno;
+module.exports = Content;
