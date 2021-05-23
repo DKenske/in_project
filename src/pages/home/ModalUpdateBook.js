@@ -54,6 +54,32 @@ export const ModalUpdateBook = ({ open, closeModal }) => {
             style={{ marginTop: '30px' }}
             container
           >
+            <Autocomplete
+              loadingText="Carregando..."
+              options={[
+                'Maryland 1',
+                'Maryland 2',
+                'Maryland 3',
+                'Maryland 4',
+                'Maryland 5',
+              ]}
+              getOptionLabel={(option) => option}
+              style={{
+                width: '100%',
+                marginBottom: '10px',
+                marginRight: '10px',
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label="Livro" variant="outlined" />
+              )}
+            />
+          </Grid>
+          <Grid
+            justify="flex-start"
+            alignItems="center"
+            style={{ marginTop: '30px' }}
+            container
+          >
             <InputComponent label="Link do video:" />
           </Grid>
           <Grid

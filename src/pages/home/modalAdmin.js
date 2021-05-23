@@ -5,6 +5,7 @@ import Button from '../../components/button/index';
 import ModalComponent from '../../components/modal';
 import { ModalUploadArchive } from './ModalUploadArchive';
 import { ModalDeleteBook } from './ModalDeleteBook';
+import { ModalUpdateBook } from './ModalUpdateBook';
 
 export const ModalAdmin = ({ open, closeModal }) => {
   const [openUpArchive, setOpenUpArchive] = useState(false);
@@ -22,6 +23,7 @@ export const ModalAdmin = ({ open, closeModal }) => {
   const handleCloseUpdateArchive = () => {
     setOpenUpdateArchive(false);
   };
+
   return (
     <>
       <ModalComponent modalState={open} onBackdropClick={closeModal} fullWidth>
@@ -53,7 +55,7 @@ export const ModalAdmin = ({ open, closeModal }) => {
               margin="10px 0 10px 5px"
               type="submit"
               width="100%"
-              onClick={() => setOpenDelArchive(true)}
+              onClick={() => setOpenUpdateArchive(true)}
             />
           </Grid>
           <Grid justify="center" alignItems="center" container>
@@ -75,6 +77,10 @@ export const ModalAdmin = ({ open, closeModal }) => {
       <ModalDeleteBook
         open={openDelArchive}
         closeModal={handleCloseDelArchive}
+      />
+      <ModalUpdateBook
+        open={openUpdateArchive}
+        closeModal={handleCloseUpdateArchive}
       />
     </>
   );

@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { Grid, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import axios from 'axios';
 import Button from '../../components/button/index';
 import ModalComponent from '../../components/modal';
 import InputComponent from '../../components/input';
 import TitleComponent from '../../components/title';
+import api from '../../services/api';
 
 export const ModalUploadArchive = ({ open, closeModal }) => {
   return (
@@ -47,6 +49,14 @@ export const ModalUploadArchive = ({ open, closeModal }) => {
                 <TextField {...params} label="Modulo" variant="outlined" />
               )}
             />
+          </Grid>
+          <Grid
+            justify="flex-start"
+            alignItems="center"
+            style={{ marginTop: '30px' }}
+            container
+          >
+            <InputComponent label="Nome do Livro:" />
           </Grid>
           <Grid
             justify="flex-start"

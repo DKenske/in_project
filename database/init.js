@@ -8,6 +8,8 @@
   const book = require('./models/book');
   // eslint-disable-next-line global-require
   const module = require('./models/module');
+  // eslint-disable-next-line global-require
+  const pdf = require('./models/pdf');
 
   try {
     const resultado = await database.sync();
