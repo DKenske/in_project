@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import styles from 'styled-components';
 import { GridListTile } from '@material-ui/core';
 
@@ -6,9 +7,11 @@ export const Body = styles.div`
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    align-content: center;
     overflow-y: hidden;
-    padding-top: 20px;
     padding-right: 10px;
     padding-left: 10px;
     
@@ -18,8 +21,6 @@ export const ImageItem = styles(GridListTile)`
     cursor: pointer;
     &:hover{
       background-color: red;
-      width: 432px;
-      height: 648px;
     }
 `;
 
@@ -46,7 +47,8 @@ export const ComicModalHeader = styles.div`
     flex-direction: row;
     height: 5vh;
     background-color: #f54438;
-    justify-content: flex-end;
+    justify-content: ${(props) =>
+      props.isRare ? 'space-between' : 'flex-end'};
     align-items: center;
 `;
 

@@ -1,53 +1,91 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react';
-import voltar from '../../assets/images/voltar.png';
-import sair from '../../assets/images/sair.png';
+import React, { useState, useMemo } from 'react';
+import { Tab, Tabs } from '@material-ui/core';
 import {
   Header,
   Content,
   IconSingleUser,
   UserContainer,
   UserInfo,
-  imageSrc,
-  BodyContent,
 } from './styles';
 import { ModalUser } from './modalUser';
-import img from '../../assets/images/Novo Projeto.png';
 import history from '../../services/history';
+import DrawerMenu from './SideDrawer';
+import Button from '../button/index';
 
 const NavigationComponent = ({ children }) => {
-  const [openMobile, setOpenMobile] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-  const [checked, setChecked] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
+  const [value, setValue] = useState(0);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleCloseDrawer = () => {
+    setDrawerOpen(false);
+  };
 
   const handleCloseUserModal = () => {
     setUserModalOpen(false);
   };
+
   const redirect = (e, route) => {
     e.stopPropagation();
     history.push(route);
   };
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    switch (newValue) {
+      case 0:
+        redirect(event, '/');
+        break;
+      case 1:
+        redirect(event, '/store');
+        break;
+      case 2:
+        redirect(event, '/cart');
+        break;
+
+      default:
+    }
+  };
+
+  useMemo(() => {
+    window.location.pathname === '/' && setValue(0);
+    window.location.pathname === '/store' && setValue(1);
+    window.location.pathname === '/cart' && setValue(2);
+  }, [window.location.pathname]);
+
   return (
     <>
-      <Header mobileMenuIsOpen={openMobile} userSettingsIsOpen={openSettings}>
-        <imageSrc onClick={(e) => redirect(e, '/')}>
-          <img
-            src={voltar}
+      <Header>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="colection" style={{ fontSize: '30px' }} />
+          <Tab label="store" style={{ fontSize: '30px' }} />
+          <Tab label="cart" style={{ fontSize: '30px' }} />
+        </Tabs>
+        {window.location.pathname === '/store' && (
+          <Button
+            variant="search"
             style={{
-              width: '100px',
-              color: 'black',
-              marginLeft: '10px',
+              width: '50px',
+              marginRight: '-60vw',
+              marginTop: '0',
             }}
+            label="Search!"
+            onClick={() => setDrawerOpen(true)}
           />
-        </imageSrc>
+        )}
         <UserContainer onClick={() => setUserModalOpen(true)}>
           <UserInfo
             style={{
-              color: '#eeeeee',
-              marginRight: '30px',
+              marginTop: '8px',
             }}
           >
             Perfil
@@ -61,18 +99,8 @@ const NavigationComponent = ({ children }) => {
           </UserInfo>
         </UserContainer>
       </Header>
-      <Content mobileMenuIsOpen={checked}>
-        <img
-          src={img}
-          style={{
-            width: '100%',
-            height: '100%',
-            zIndex: '0',
-            objectFit: 'cover',
-          }}
-        />
-        <BodyContent>{children}</BodyContent>
-      </Content>
+      <Content>{children}</Content>
+      <DrawerMenu open={drawerOpen} handleClose={handleCloseDrawer} />
       {userModalOpen && (
         <ModalUser open={userModalOpen} closeModal={handleCloseUserModal} />
       )}

@@ -32,10 +32,34 @@ export const Button = styled.button`
   ${({ variant }) =>
     variant === 'danger' &&
     `
+    
+    text-align: center;
     background-color: #c81e1e;
     color: #fff;
     border: 1px solid  #c81e1e;
+    margin-top: 10px;
+    width: 100%;
+
+    &:hover{
+      background-color: #f55539;
+    }
   `}
+
+  ${({ variant }) =>
+    variant === 'search' &&
+    `
+  padding: 0;
+  text-align: center;
+  background-color: #c81e1e;
+  color: #fff;
+  border: 1px solid  #c81e1e;
+  margin-top: 10px;
+  width: 100%;
+
+  &:hover{
+    background-color: #f55539;
+  }
+`}
 
   ${({ variant }) =>
     variant === 'tertiary' &&

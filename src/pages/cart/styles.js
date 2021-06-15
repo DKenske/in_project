@@ -1,42 +1,51 @@
+import { ListItemText } from '@material-ui/core';
 import styles from 'styled-components';
-import { GridListTile } from '@material-ui/core';
 
 export const Body = styles.div`
     color: white;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     overflow-y: hidden;
     padding-top: 20px;
     padding-right: 10px;
     padding-left: 10px;
-    
 `;
 
-export const ImageItem = styles(GridListTile)`
-    cursor: pointer;
-    &:hover{
-      background-color: red;
-      width: 432px;
-      height: 648px;
-    }
+export const ListItemCart = styles(ListItemText)`
+    color: white !important;
 `;
 
-export const ComicModalBody = styles.div`
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-`;
-
-export const ComicModalContainer = styles.div`
+export const ValueComponent = styles.div`
+    color: white;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    margin: 10px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    align-text: center;
+    align-self: center;
+    justify-self: center;
+    width: 100px;
+    height: 100px;
+    background: #111;
+    margin: 20px;
+
+`;
+
+export const DeleteButton = styles.div`
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-text: center;
+    align-items:center;
+    justify-content: center;
+    &:hover{
+        background: #777
+    }
 `;
 
 export const ComicModalHeader = styles.div`
@@ -45,6 +54,7 @@ export const ComicModalHeader = styles.div`
     display: flex;
     flex-direction: row;
     height: 5vh;
+    width: 300px;
     background-color: #f54438;
     justify-content: flex-end;
     align-items: center;
@@ -65,10 +75,11 @@ export const CloseModalButton = styles.div`
     }
 `;
 
-export const LoadingContainer = styles.div`
+export const ComicModalContainer = styles.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    flex-direction: column
+    height: 100%;
+    margin: 10px;
 `;

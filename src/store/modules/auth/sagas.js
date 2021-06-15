@@ -4,28 +4,55 @@ import api from '../../../services/api';
 
 import { signInSuccess, signFailure, signOut } from './actions';
 
+const users = [
+  { username: 'master', password: '123456' },
+  { username: 'user', password: '123456' },
+];
+
 function* signIn({ payload }) {
+  const { username, password } = payload;
+  let userMatch = false;
+  console.log(username, password);
   try {
-    const response = yield call(
-      api.post,
-      '/auth/token',
-      {},
-      {
-        auth: payload,
-      }
-    );
-
-    const validation = yield call(api.get, '/auth/token/validate', {
-      headers: { token: response.data.token },
-    });
-
-    const userData = {
-      data: validation.data,
+    const user = {
+      name: null,
+      role: null,
     };
 
-    yield put(signInSuccess(response.data.token, userData));
-  } catch (error) {
-    yield put(signFailure(error));
+    users.forEach((item) => {
+      console.log(item);
+      if (item.username === username && item.password === password) {
+        console.log('hello');
+        userMatch = true;
+      }
+    });
+
+    console.log(userMatch);
+
+    if (!userMatch) {
+      throw new Error('Not a User');
+    }
+
+    switch (username) {
+      case 'master':
+        user.name = 'Daniel Kenske';
+        user.role = 'master';
+        break;
+
+      case 'user':
+        user.name = 'Daniel Kenske';
+        user.role = 'user';
+        break;
+
+      default:
+        break;
+    }
+
+    console.log(user);
+    yield put(signInSuccess(user));
+  } catch (e) {
+    console.log(e);
+    yield put(signFailure(e));
   }
 }
 

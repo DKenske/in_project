@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 export const Body = styled.div`
   padding: 8px 0;
   margin-bottom: 30px;
-  border-bottom: 3px solid #dcdcdc;
 
   @media print {
     padding-top: 8px;
@@ -15,7 +14,7 @@ export const Body = styled.div`
 `;
 
 export const Text = styled(Typography)`
-  font-size: 30px !important;
+  font-size: 25px !important;
   margin-bottom: 1 @media print {
     font-size: 15px !important;
   }

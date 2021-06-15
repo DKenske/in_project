@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable eqeqeq */
 /* eslint-disable consistent-return */
@@ -9,17 +8,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import {
   CircularProgress,
+  Grid,
   GridList,
   GridListTile,
   GridListTileBar,
 } from '@material-ui/core';
 import Loading from 'react-loading';
 import { Pagination } from '@material-ui/lab';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Body, ImageItem, LoadingContainer } from './styles';
 import history from '../../services/history';
 import { GetComicsRequest } from '../../store/modules/getComics/actions';
 import GridItem from './gridITem';
 import ModalComic from './showComicModal';
+import DrawerMenu from '../../components/navigation/SideDrawer';
+import Button from '../../components/button/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = (props) => {
+const Store = (props) => {
   const [openShowComic, setOpenShowComic] = useState(false);
   const [itemSelected, setItemSelected] = useState({});
+
   const dispatch = useDispatch();
-  const comics = useSelector((state) => state.collection);
+  const comics = useSelector((state) => state.getComics);
+  const cupoms = useSelector((state) => state.cupoms);
+  const collection = useSelector((state) => state.collection);
   const classes = useStyles();
 
   const handleCloseModal = () => {
@@ -55,14 +61,24 @@ const Home = (props) => {
   };
 
   useMemo(() => {
-    console.log(comics);
+    console.log(openShowComic, itemSelected, cupoms);
+  }, [openShowComic]);
+
+  useMemo(() => {
     dispatch(GetComicsRequest());
   }, []);
 
   return (
     <Body>
       <>
-        {comics.comics ? (
+        <Pagination
+          count={Math.ceil(comics?.data?.total / 27)}
+          color="secondary"
+          style={{ zIndex: '999999999', color: 'white', marginTop: '15px' }}
+          onChange={handleChangePage}
+        />
+
+        {comics.data && comics.data.results ? (
           <GridList
             cellHeight={324}
             cols={9}
@@ -70,7 +86,7 @@ const Home = (props) => {
             style={{ width: '100%', height: '100%' }}
           >
             <GridListTile key="Subheader" cols={9} style={{ height: '10px' }} />
-            {comics.comics.map((item) => (
+            {comics.data.results.map((item) => (
               <ImageItem
                 onClick={() => {
                   setOpenShowComic(true);
@@ -83,7 +99,13 @@ const Home = (props) => {
           </GridList>
         ) : null}
         {comics.loading && (
-          <LoadingContainer>You don't have any comics!</LoadingContainer>
+          <LoadingContainer>
+            <CircularProgress
+              color="secondary"
+              style={{ marginBottom: '30px' }}
+            />
+            Energizing!
+          </LoadingContainer>
         )}
         {openShowComic && (
           <ModalComic
@@ -98,4 +120,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default Store;

@@ -15,6 +15,8 @@ const ModalComponent = ({
   fullScreenMobile,
   TransitionComponent,
   transitionDuration,
+  style,
+  variant,
 }) => {
   const theme = useTheme();
   fullScreenMobile
@@ -22,9 +24,7 @@ const ModalComponent = ({
     : null;
   return (
     <Dialog
-      style={{
-        zIndex: 9999999999999,
-      }}
+      style={style}
       open={modalState}
       onBackdropClick={onBackdropClick}
       aria-labelledby="simple-modal-title"
@@ -36,12 +36,22 @@ const ModalComponent = ({
       fullScreen={fullScreenMobile}
       TransitionComponent={TransitionComponent}
       transitionDuration={transitionDuration}
+      variant={variant}
     >
       {title ? (
         <DialogTitle style={{ padding: '28px 32px' }}>{title}</DialogTitle>
       ) : null}
 
-      <DialogContent style={{ padding: '8px 32px' }}>{children}</DialogContent>
+      <DialogContent
+        style={{
+          padding: '0',
+          background: !variant ? 'black' : '#222',
+          maxHeight: '510px',
+          overflowY: 'hidden',
+        }}
+      >
+        {children}
+      </DialogContent>
     </Dialog>
   );
 };

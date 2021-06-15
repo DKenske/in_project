@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 export const RouteWrapper = ({ component, isProtect, ...rest }) => {
   const isSigned = useSelector((state) => state.auth.signed);
+  if (isProtect && !isSigned) return <Redirect to="/login" />;
 
   if (!isProtect && isSigned) return <Redirect to="/" />;
 

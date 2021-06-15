@@ -10,6 +10,7 @@ const ButtonComponent = ({
   margin,
   disabled,
   fullWidthMobile,
+  style,
 }) => {
   return (
     <Button
@@ -20,6 +21,7 @@ const ButtonComponent = ({
       margin={margin}
       disabled={disabled}
       fullWidthMobile={fullWidthMobile}
+      style={style}
     >
       {label}
     </Button>
